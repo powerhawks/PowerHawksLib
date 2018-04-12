@@ -1,4 +1,4 @@
-package power.hawks.frc.lib;
+package power.hawks.frc.lib.auto.cmds;
 
 /**
  * Generic interface for autonomous commands

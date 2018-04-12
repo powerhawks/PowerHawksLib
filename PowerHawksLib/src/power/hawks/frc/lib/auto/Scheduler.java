@@ -1,8 +1,10 @@
-package power.hawks.frc.lib;
+package power.hawks.frc.lib.auto;
 
 
 
 import java.util.ArrayList;
+
+import power.hawks.frc.lib.auto.cmds.Command;
 
 /**
  * A scheduler for executing commands in Autonomous mode
