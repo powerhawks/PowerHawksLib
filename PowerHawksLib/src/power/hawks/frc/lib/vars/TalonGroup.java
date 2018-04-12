@@ -9,12 +9,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import power.hawks.frc.lib.subsys.DriveTrain;
 
 public class TalonGroup {
-	ArrayList<TalonSRX> controllers;
+	TalonSRX[] controllers;
 	TalonSRX driveEncoder;
 	
-	public TalonGroup(ArrayList<TalonSRX> cons, int i) {
+	public TalonGroup(TalonSRX[] cons, int i) {
 		controllers = cons;
-		driveEncoder = controllers.get(i);
+		driveEncoder = controllers[i];
 	}
 	
 	public void set(double power) {
