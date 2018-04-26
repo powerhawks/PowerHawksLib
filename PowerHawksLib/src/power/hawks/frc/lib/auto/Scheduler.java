@@ -72,9 +72,14 @@ public class Scheduler {
 	 * Wrapper that resets all flags and clears any commands out of the scheduler
 	 */
 	public void reset() {
-		commands.clear();
-		done = false;
-		running = false;
-		i = 0;
+		try {
+			commands.clear();
+			done = false;
+			running = false;
+			i = 0;
+		}
+		catch (Exception e) {
+			return;
+		}
 	}
 }
