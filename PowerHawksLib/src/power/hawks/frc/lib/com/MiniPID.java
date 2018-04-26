@@ -1,4 +1,4 @@
-package power.hawks.frc.lib;
+package power.hawks.frc.lib.com;
 /**
 * Small, easy to use PID implementation with advanced controller capability.<br> 
 * Minimal usage:<br>

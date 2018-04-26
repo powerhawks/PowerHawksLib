@@ -1,3 +1,4 @@
+ 
 package power.hawks.frc.lib.subsys;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -5,8 +6,8 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import power.hawks.frc.lib.MiniPID;
-import power.hawks.frc.lib.Utility;
+import power.hawks.frc.lib.com.MiniPID;
+import power.hawks.frc.lib.com.Utility;
 import power.hawks.frc.lib.vars.TalonGroup;
 
 /**
@@ -51,7 +52,7 @@ public class DriveTrain {
 	/**
 	 * Initializes the drive train for use and configures PID for autonomous
 	 */
-	public DriveTrain(TalonGroup left, TalonGroup right) {
+	public DriveTrain(TalonGroup left, TalonGroup right, double[] dPV, double[] nPV, double[] sPV) {
 		leftMotors = left;
 		rightMotors = right;
 		
@@ -60,16 +61,16 @@ public class DriveTrain {
 		rightMotors.configFeedbackSensor();
 		leftMotors.resetEncoder();
 		rightMotors.resetEncoder();
-		Utility.configurePID(pT, iT, dT, pidDist);
+		Utility.configurePID(dPV, pidDist);
 		pidDist.setOutputLimits(MAX_AUTO_SPEED);
 		
 		// Configure NavX PID
 		navx.reset();
-		Utility.configurePID(pN, iN, dN, pidNavx);
+		Utility.configurePID(nPV, pidNavx);
 		pidNavx.setOutputLimits(MAX_AUTO_SPEED);
 		
 		//Configure straight PID
-		Utility.configurePID(pS, iS, dS, pidStraight);
+		Utility.configurePID(sPV, pidStraight);
 		pidStraight.setOutputLimits(MAX_AUTO_SPEED);
 	}
 
@@ -105,8 +106,8 @@ public class DriveTrain {
 	public void driveRadial(double power, double angle) {
 		pidStraight.setSetpoint(angle);
 		double compensate = pidStraight.getOutput(Math.round(navx.getYaw()));
-		
-		drive(power, power*(1+compensate));
+		 
+		drive(power, power*(1-compensate));
 	}
 
 	

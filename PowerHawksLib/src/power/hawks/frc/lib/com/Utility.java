@@ -1,4 +1,4 @@
-package power.hawks.frc.lib;
+package power.hawks.frc.lib.com;
 
 /**
  * Basic class that has simple wrappers for quality-of-life things
@@ -24,7 +24,7 @@ public class Utility {
 	 * @param d the D-Gain
 	 * @param pid the PID controller
 	 */
-	public static void configurePID(double p, double i, double d, MiniPID pid) {
-		pid.setP(p); pid.setI(i); pid.setD(d);
+	public static void configurePID(double[] pidVal, MiniPID pid) {
+		pid.setPID(pidVal[0], pidVal[1], pidVal[2]);
 	}
 }
