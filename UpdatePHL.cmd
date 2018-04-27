@@ -1,0 +1,1 @@
+(cd PowerHawksLib && git fetch) || (git clone https://github.com/powerhawks/PowerHawksLib.git && cd PowerHawksLib)) && cd PowerHawksLib && copy *.jar %userprofile%\wpilib\java\current\lib
